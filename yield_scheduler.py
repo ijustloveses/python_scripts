@@ -29,6 +29,7 @@ class Scheduler:
     def new_task(self, task):
         self.tasks.append((task, None))
         self.task_cnt += 1
+        print "%d tasks" % self.task_cnt
 
     def add_task_back(self, task, data):
         self.tasks.append((task, data))
