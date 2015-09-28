@@ -91,7 +91,7 @@ class SendYieldPoint(YieldPoint):
 
 def listener(cnt=5):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('127.0.0.1', 5555))
+    sock.bind(('127.0.0.1', 10001))
     i = 0
     while i < cnt:
         sock.listen(5)
