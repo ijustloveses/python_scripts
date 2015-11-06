@@ -16,10 +16,12 @@ import types
 
 def fib(n):
     if n < 2:
+        print("fib({}) = {}".format(n, n))
         yield n
     else:
         a = yield fib(n - 1)
         b = yield fib(n - 2)
+        print("fib({}) = {}".format(n, a + b))
         yield a + b
 
 
@@ -100,7 +102,9 @@ def print_every(message, interval):
 def main():
     loop = EventLoop()
     hello_task = print_every('Hello', 1)
+    fib_task = fib(4)
     loop.schedule(hello_task)
+    loop.schedule(fib_task)
     loop.run_forever()
 
 
