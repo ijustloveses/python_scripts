@@ -1,0 +1,34 @@
+Reference
+============
+file:///Z:/workspace/myproj/python_scripts/yield_pipeline/Coroutines.pdf
+http://www.dabeaz.com/coroutines/index.html
+
+
+Important to know before diving into code
+===========================================
+
+def foo():
+    id = yield 'a'
+    print "id 1st ", id
+    yield
+    print "id 2nd ", id
+
+f = foo()
+x = f.send(None)
+print "x: ", x
+y = f.send(2)
+print "y: ", y
+
+output will be as below
+x:  a
+id 1st 2
+y:  None
+
+What we could know from the example:
+1. None should be sent to coroutine to activate it
+2. At this time, id will not catch None, but the coroutine DO yield 'a' and return it to x
+3. Then coroutine holds after yielding
+4. After sending 2 to coroutine, 2 is caught by id, then corountin print "id 1st 2"
+5. then coroutine yield None and return it to y
+
+You can found similar cases by checking how tasks are executed by scheduler
