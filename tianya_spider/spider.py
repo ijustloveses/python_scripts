@@ -72,16 +72,26 @@ class Spider(object):
 
 
 if __name__ == '__main__':
-    # s = Spider('http://bbs.tianya.cn/post-no05-422979-{}.shtml'.format, 1, 12, 'klingkun', u'揭开脸谱看封神------解读《封神演义》.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-412828-{}.shtml'.format, 1, 22, 'klingkun', u'西游记中计.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-383603-{}.shtml'.format, 1, 7, 'klingkun', u'品读《三国演义》中的三大主角.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-363532-{}.shtml'.format, 1, 4, 'klingkun', u'解读《水浒传》里的大反派.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-265690-{}.shtml'.format, 1, 75, u'曹铜爵', u'少不读水浒——揭秘水浒传.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-380273-{}.shtml'.format, 1, 30, u'布衣卿相0', u'《五代风云》（最细致的人性五代史）.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-271597-{}.shtml'.format, 1, 48, u'YOU2YOU3YOU62005', u'西晋五十年.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-239864-{}.shtml'.format, 1, 45, u'李晓润', u'唐诗演义.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-236376-{}.shtml'.format, 1, 38, u'月映长河', u'揭秘北洋舰队为什么打不过联合舰队.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-214629-{}.shtml'.format, 1, 92, u'醉罢君山', u'血战天下——战国全史.txt')
-    # s = Spider('http://bbs.tianya.cn/post-no05-134367-{}.shtml'.format, 1, 41, u'醉罢君山', u'铁血时代——以霸业为主线的春秋战国史.txt')
-    s = Spider('http://bbs.tianya.cn/post-no05-111344-{}.shtml'.format, 1, 74, u'醉罢君山', u'虽远必诛——大汉帝国的扩张.txt')
-    s.run()
+    posts = [
+        #  ['no05', '422979', 1, 12, u'klingkun', u'揭开脸谱看封神------解读《封神演义》.txt'],
+        #  ['no05', '412828', 1, 22, u'klingkun', u'西游记中计.txt'],
+        #  ['no05', '383603', 1, 7, u'klingkun', u'品读《三国演义》中的三大主角.txt'],
+        #  ['no05', '363532', 1, 4, u'klingkun', u'解读《水浒传》里的大反派.txt'],
+        #  ['no05', '265690', 1, 75, u'曹铜爵', u'少不读水浒——揭秘水浒传.txt'],
+        #  ['no05', '380273', 1, 30, u'布衣卿相0', u'《五代风云》（最细致的人性五代史）- undone.txt'],
+        #  ['no05', '271597', 1, 48, u'YOU2YOU3YOU62005', u'西晋五十年.txt'],
+        #  ['no05', '239864', 1, 45, u'李晓润', u'唐诗演义.txt'],
+        #  ['no05', '236376', 1, 38, u'月映长河', u'揭秘北洋舰队为什么打不过联合舰队.txt'],
+        #  ['no05', '214629', 1, 92, u'醉罢君山', u'血战天下——战国全史.txt'],
+        #  ['no05', '134367', 1, 41, u'醉罢君山', u'铁血时代——以霸业为主线的春秋战国史.txt'],
+        #  ['no05', '111344', 1, 74, u'醉罢君山', u'虽远必诛——大汉帝国的扩张.txt`'],
+        #  ['no05', '269514', 1, 56, u'o宇微o', u'五代刀锋 朱温、李存勖.txt'],
+        #  ['no05', '228429', 1, 53, u'宇_为', u'刘秀和云台二十八将的传奇史诗.txt'],
+        ['no05', '113393', 1, 57, u'雪域桃源', u'东汉帝国往事.txt'],
+        ['no05', '124391', 1, 132, u'曹三公子', u'嗜血的皇冠——光武皇帝之刘秀的秀.txt'],
+    ]
+    for label, pid, start, end, author, name in posts:
+        print u"fetching {} ...".format(name)
+        fmt = 'http://bbs.tianya.cn/post-{}-{}-'.format(label, pid) + '{}.shtml'
+        s = Spider(fmt.format, start, end, author, name)
+        s.run()
